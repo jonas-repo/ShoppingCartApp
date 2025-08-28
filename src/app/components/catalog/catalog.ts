@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductCard } from '../product-card/product-card';
 
@@ -11,4 +11,9 @@ import { ProductCard } from '../product-card/product-card';
 export class Catalog {
   @Input() products!: Product[];
 
+  @Output() productEventEmmiter: EventEmitter<Product> = new EventEmitter();
+
+  onAddCart(product : Product){
+    this.productEventEmmiter.emit(product); // pass from the child product-card event to the parent cart-app
+  }
 }

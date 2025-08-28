@@ -17,7 +17,7 @@ export class CartApp implements OnInit{
 
   items: CartItem[] = [];
 
-  //inyect dependency
+  //inject dependency
   constructor(private service: ShopCarService){
 
   }
@@ -26,4 +26,13 @@ export class CartApp implements OnInit{
   ngOnInit(): void {
     this.products = this.service.findAll();
   }
+
+  onAddCart(product: Product){
+    //by immutability we updated the array of items to don't share on memory reference with the old object and prevent changes from other places thats why we used ... in both this.items and product
+    this.items = [... this.items, 
+      {product: {...product}, 
+      quantity: 1}]
+  }
+
+
 }
