@@ -4,10 +4,11 @@ import { Product } from '../../models/product';
 import { Catalog } from '../catalog/catalog';
 import { CartItem } from '../../models/cartItem';
 import { Car } from '../car/car';
+import { Navbar } from '../navbar/navbar';
 
 @Component({
   selector: 'cart-app',
-  imports: [Catalog, Car],
+  imports: [Catalog, Car, Navbar],
   templateUrl: './cart-app.html',
   styleUrl: './cart-app.css'
 })
@@ -19,6 +20,8 @@ export class CartApp implements OnInit {
 
   total: number = 0;
 
+  showCart: boolean = false;
+
   //inject dependency
   constructor(private service: ShopCarService) {
 
@@ -27,6 +30,7 @@ export class CartApp implements OnInit {
   //interface from onInit to initialize with this data
   ngOnInit(): void {
     this.products = this.service.findAll();
+    this.items = JSON.parse(sessionStorage.getItem('cart')!) || [];
     this.calculateTotal();
   }
 
@@ -55,6 +59,7 @@ export class CartApp implements OnInit {
       }]
     }
     this.calculateTotal();
+    this.saveSession();
   }
 
   /**
@@ -65,6 +70,7 @@ export class CartApp implements OnInit {
   onDeleteCart(id: number) {
     this.items = this.items.filter(item => item.product.id !== id);
     this.calculateTotal();
+    this.saveSession
   }
 
   /**
@@ -80,5 +86,19 @@ export class CartApp implements OnInit {
    */
   calculateTotal(){
     this.total = this.items.reduce((accumulator, item) => accumulator + item.quantity * item.product.price, 0);
+  }
+
+  /**
+   * Saves the current cart items to the browser's session storage.
+   *
+   * Serializes the `items` array and stores it under the key `'cart'` in sessionStorage.
+   * This allows the cart state to persist across page reloads within the same session.
+   */
+  saveSession(){
+    sessionStorage.setItem('cart', JSON.stringify(this.items));
+  }
+
+  openCart(){
+    this.showCart = !this.showCart;
   }
 }
