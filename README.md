@@ -2,6 +2,31 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
 
+CartApp is a simple shopping cart application built with Angular. Users can browse a catalog of products, add items to their cart, view cart contents in a modal, and remove products. The cart state is saved in the browser session, so items remain in the cart during the session.
+
+## Features
+
+- Product catalog display
+- Add products to the shopping cart
+- View cart contents in a modal window
+- Remove products from the cart
+- Cart total calculation
+- Cart state persists in browser session storage
+- Uses immutability for state management
+- Responsive UI with Bootstrap classes
+- Modular Angular components (Catalog, Cart, Navbar)
+- Event-driven communication between components
+
+## Technologies and Concepts Used
+
+- **Angular**: Framework for building the application structure and components.
+- **Immutability**: State updates (such as cart items) are handled by creating new arrays/objects instead of mutating existing ones. This improves change detection and application stability.
+- **Session Storage**: The cart data is stored in the browser's session storage, allowing the cart to persist during the user's session.
+- **Bootstrap**: Used for styling and responsive layout.
+- **Component Communication**: Angular event emitters are used for parent-child communication (e.g., adding/removing products).
+- **TypeScript**: Strongly typed language for safer and more maintainable code.
+
+
 ## Development server
 
 To start a local development server, run:
