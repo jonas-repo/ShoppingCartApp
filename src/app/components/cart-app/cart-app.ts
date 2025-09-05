@@ -3,12 +3,12 @@ import { ShopCarService } from '../../services/shop-car-service';
 import { Product } from '../../models/product';
 import { Catalog } from '../catalog/catalog';
 import { CartItem } from '../../models/cartItem';
-import { Car } from '../car/car';
 import { Navbar } from '../navbar/navbar';
+import { CartModal } from '../cart-modal/cart-modal';
 
 @Component({
   selector: 'cart-app',
-  imports: [Catalog, Car, Navbar],
+  imports: [Catalog, CartModal, Navbar],
   templateUrl: './cart-app.html',
   styleUrl: './cart-app.css'
 })
