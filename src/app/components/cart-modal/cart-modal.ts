@@ -13,8 +13,6 @@ export class CartModal {
 
   @Input() items: CartItem[] = []; //inyect from parent
 
-  @Input() total = 0
-
    @Output() idProductEventEmmiter = new EventEmitter();
 
      @Output() openCartEvent= new EventEmitter();
